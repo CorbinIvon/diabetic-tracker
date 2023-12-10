@@ -5,6 +5,7 @@ import DiabeticEntryForm from './components/DiabeticEntryForm';
 import supabase from './components/SupabaseClient';
 
 export default async function Home() {
+  'use client'
   const { data: allData, error: error1 } = await supabase
     .from('Little_Diabetic_Tracker')
     .select('value, timestamp')

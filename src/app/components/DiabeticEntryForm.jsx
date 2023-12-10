@@ -2,6 +2,7 @@ import moment from 'moment-timezone';
 import InsertData from "./server/InsertData";
 
 export default function Form() {
+  'use client'
   const today = moment().format('YYYY-MM-DD')
   const now = moment().format('HH:mm')
   return (
