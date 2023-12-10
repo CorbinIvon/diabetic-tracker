@@ -14,8 +14,14 @@ export default async function Home() {
     .select('value, timestamp')
     .gte('timestamp', moment().startOf('day').toISOString())
     .order('timestamp', { ascending: false })
-
-  allData?.forEach(entry => {
+  interface Entry {
+    value: any;
+    timestamp: any;
+    date?: string;
+    time?: string;
+  }
+    
+  allData?.forEach((entry: Entry) => {
     const dateObject = new Date(entry.timestamp);
     const date = dateObject.toLocaleDateString();
     const time = dateObject.toLocaleTimeString().replace(/:\d+ /, ' ');
@@ -23,7 +29,7 @@ export default async function Home() {
     entry.date = date;
     entry.time = time;
   });
-  todayData?.forEach(entry => {
+  todayData?.forEach((entry: Entry) => {
     const dateObject = new Date(entry.timestamp);
     const date = dateObject.toLocaleDateString();
     const time = dateObject.toLocaleTimeString().replace(/:\d+ /, ' ');
@@ -42,7 +48,7 @@ export default async function Home() {
       {error1 && <p>{error1.message}</p>}
       {error2 && <p>{error2.message}</p>}
 
-      {todayData && <Heading align={'center'}>Today's Recordings</Heading>}
+      {todayData && <Heading align={'center'}>Today&apos;s Recordings</Heading>}
       {todayData && <RenderTable data={todayData} />}
       {allData && <Heading align={'center'}>All Recordings</Heading>}
       {allData && <RenderTable data={allData} />}
