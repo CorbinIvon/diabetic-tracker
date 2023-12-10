@@ -13,10 +13,10 @@ const inter = Inter({ subsets: ['latin'] });
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Light Diabetic Tracker",
+  title: "Glucose Monitor Tracker",
   description: "Makes it easy to track your blood sugar levels.",
 };
-export default function RootLayout({ children: { props: { children } } }: { children: any }) {
+export default function RootLayout({ children }: RootLayoutProps ) {
   return (
     <html lang="en">
         <body>
