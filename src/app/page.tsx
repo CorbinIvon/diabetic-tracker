@@ -21,7 +21,7 @@ export default async function Home() {
     date?: string;
     time?: string;
   }
-    
+
   allData?.forEach((entry: Entry) => {
     const dateObject = new Date(entry.timestamp);
     const date = dateObject.toLocaleDateString();

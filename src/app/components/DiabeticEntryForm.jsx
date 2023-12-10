@@ -1,8 +1,8 @@
-import moment from 'moment-timezone';
+'use client'
+import moment from 'moment';
 import InsertData from "./server/InsertData";
 
-export default function Form() {
-  'use client'
+export default function DiabeticEntryForm() {
   const today = moment().format('YYYY-MM-DD')
   const now = moment().format('HH:mm')
   return (
