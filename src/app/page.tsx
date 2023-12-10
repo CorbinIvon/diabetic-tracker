@@ -5,7 +5,6 @@ import DiabeticEntryForm from './components/DiabeticEntryForm';
 import supabase from './components/SupabaseClient';
 
 export default async function Home() {
-
   const { data: allData, error: error1 } = await supabase
     .from('Little_Diabetic_Tracker')
     .select('value, timestamp')
@@ -38,11 +37,17 @@ export default async function Home() {
   // console.log(allData);
   return (
     <>
+      <Heading align={'center'}>Glucose Monitor Tracker</Heading>
       <DiabeticEntryForm />
-      <Heading align={'center'}>Today's Recordings</Heading>
+      {error1 && <p>{error1.message}</p>}
+      {error2 && <p>{error2.message}</p>}
+
+      {todayData && <Heading align={'center'}>Today's Recordings</Heading>}
       {todayData && <RenderTable data={todayData} />}
-      <Heading align={'center'}>All Recordings</Heading>
+      {allData && <Heading align={'center'}>All Recordings</Heading>}
       {allData && <RenderTable data={allData} />}
+
+      {!allData && !todayData && <p>No Data. Please make 1 entry</p>}
     </>
   )
 }

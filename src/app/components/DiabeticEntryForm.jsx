@@ -1,19 +1,5 @@
-import supabase from "./SupabaseClient"
-import { Button, TextField } from '@radix-ui/themes';
 import moment from 'moment-timezone';
-
-async function InsertData(formData) {
-  'use server'
-  // get each field out of formData
-  const value = formData.get('value')
-  // const timestamp = new Date().toISOString() | new Date().toISOString()
-  const timestamp = moment(`${formData.get('date')} ${formData.get('time')}`).toISOString()
-  const {data, error} = await supabase
-    .from('Little_Diabetic_Tracker')
-    .insert([
-      { value, timestamp }
-    ])
-}
+import InsertData from "./server/InsertData";
 
 export default function Form() {
   const today = moment().format('YYYY-MM-DD')
@@ -23,7 +9,7 @@ export default function Form() {
       <div className="px-4">
         <label htmlFor="value" className="block text-sm font-medium text-gray-400">Reading</label>
         <div className="flex">
-          <input type="number" name="value" id="value" className="bg-pink-900 text-white rounded-md w-full p-1" placeholder="mg/dL Reading"/>
+          <input type="number" name="value" id="value" className="bg-pink-900 text-white rounded-md w-full p-5" placeholder="mg/dL Reading" required/>
         </div>
       </div>
       <div className="flex justify-between px-4 pt-2">
@@ -37,7 +23,7 @@ export default function Form() {
         </div>
       </div>
       <div className="flex justify-center m-4">
-        <button type="submit" className="w-full bg-pink-900">Submit</button>
+        <button type="submit" className="w-full bg-pink-900 p-5 rounded-lg">Submit</button>
       </div>
     </form>
   )
